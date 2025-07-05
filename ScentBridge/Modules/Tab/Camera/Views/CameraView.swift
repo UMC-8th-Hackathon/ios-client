@@ -38,8 +38,18 @@ struct CameraView: View {
                           maxSelectionCount: 1,
                           matching: .images)
             .onChange(of: selectedItems, {
-                print("Change")
-                self.viewModel.capturedImage = selectedItems?.first
+                guard let firstItem = selectedItems.first else { return }
+
+                Task {
+                    if let data = try? await firstItem.loadTransferable(type: Data.self),
+                       let image = UIImage(data: data) {
+                        self.viewModel.capturedImage = image
+                    } else {
+                        print("이미지 변환 실패")
+                    }
+                }
+            })
+            .onChange(of: viewModel.capturedImage, {
                 self.viewModel.postPerfumes { perfumeId in
                     if let id = perfumeId {
                         movePerfumeDetail(id)

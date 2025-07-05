@@ -49,8 +49,10 @@ extension SBURLRequest {
         urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.setValue("application/json",
                             forHTTPHeaderField: "Accept")
-        urlRequest.setValue("application/json",
-                            forHTTPHeaderField: "Content-Type")
+        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+            urlRequest.setValue("application/json",
+                                forHTTPHeaderField: "Content-Type")
+        }
         if let accessToken = accessToken {
             urlRequest.setValue("Bearer \(accessToken)",
                                 forHTTPHeaderField: "Authorization")
