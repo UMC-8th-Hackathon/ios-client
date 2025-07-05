@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecordView: View {
     
-    @Bindable var viewModel: OrderViewModel = .init()
+    @Bindable var viewModel: RecordViewModel = .init()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {

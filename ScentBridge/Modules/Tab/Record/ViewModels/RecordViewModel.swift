@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class OrderViewModel {
+class RecordViewModel {
     var selectedSegment: RecordSegment = .analysis
     
     var analysis: [PerfumeResponse] = []
