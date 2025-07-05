@@ -1,5 +1,5 @@
 //
-//  SBNetworkManager.swift
+//  SBNetworkService.swift
 //  ScentBridge
 //
 //  Created by 이전희 on 2025/07/05.
@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-protocol SBNetworkManager {
+protocol SBNetworkService {
     /// Network Response - Generic Type
     /// - Parameters:
     ///   - briefingURLRequest: 제공하는 API URL Request
@@ -26,7 +26,7 @@ protocol SBNetworkManager {
                   completion: @escaping (_ value: Data?, _ error: Error?) -> Void)
 }
 
-extension SBNetworkManager {
+extension SBNetworkService {
     func response<D: Codable>(_ sbURLRequest: any SBURLRequest,
                               type: D.Type,
                               completion: @escaping (_ value: D?, _ error: Error?) -> Void) {

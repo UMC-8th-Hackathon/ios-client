@@ -13,7 +13,7 @@ struct HomeView: View {
     let introduces: [IntroDto] = [
         IntroDto(nickname: "노드",
                  intro:  "오늘은 머스크향이 좋네요.",
-                 imageUrl: "https://www.artinsight.co.kr/data/tmp/2104/20210407060945_kxigfeqr.jpg",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/1.png?alt=media&token=b366bb38-bf36-428e-aee3-ed40c5059425",
                  scentName: "The Sense of Smell",
                  scentAuthor: "Jan Brueghel the Elder"),
         IntroDto(nickname: "노드",
@@ -31,38 +31,38 @@ struct HomeView: View {
     let artBasedScents: [ScentDto] = [
         ScentDto(id: 1,
                  title: "The Sense of Smell",
-                 imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwXK3KFxlLMWgUcvYS-g5TkRGTkP2ZxPdI3g&s",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/2.png?alt=media&token=b9a9e770-8022-439c-8aea-a1a30d095435",
                  tags: ["xx", "xxx2"]),
         ScentDto(id: 2,
                  title: "The Sense of Smell",
-                 imageUrl: "https://lh3.googleusercontent.com/proxy/UB1i16eRiUX4rJ1GQiCqzJ7eikEu6vwU2zMr4nsFUwImdkhB8_qPnXwMaTjKczrh29tpQeSQkCyz1STKTCYpKJhDy4eZwC4yKXxnL3AXhuxAyD4",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/3.png?alt=media&token=83d649fe-a93e-440f-821a-6c4555587a18",
                  tags: ["xx3", "xxx2"]),
         ScentDto(id: 3,
                  title: "Wanderer above the Sea of Fog",
-                 imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwXK3KFxlLMWgUcvYS-g5TkRGTkP2ZxPdI3g&s",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/4.png?alt=media&token=2d04c67a-9c10-4dda-9b4d-cacda8f49079",
                  tags: ["xx", "xxx2"]),
         ScentDto(id: 4,
                  title: "The Sense of Smell",
-                 imageUrl: "https://lh3.googleusercontent.com/proxy/UB1i16eRiUX4rJ1GQiCqzJ7eikEu6vwU2zMr4nsFUwImdkhB8_qPnXwMaTjKczrh29tpQeSQkCyz1STKTCYpKJhDy4eZwC4yKXxnL3AXhuxAyD4",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/5.png?alt=media&token=ac1492de-a5b8-4953-a3c4-8fbd73c7947c",
                  tags: ["xx3", "xxx2"]),
     ]
     
     let musicBasedScents: [ScentDto] = [
         ScentDto(id: 1,
                  title: "The Sense of Smell",
-                 imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwXK3KFxlLMWgUcvYS-g5TkRGTkP2ZxPdI3g&s",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/6.png?alt=media&token=63f9356b-3514-4bbe-9a26-20cd40a13151",
                  tags: ["xx", "xxx2"]),
         ScentDto(id: 2,
                  title: "The Sense of Smell",
-                 imageUrl: "https://lh3.googleusercontent.com/proxy/UB1i16eRiUX4rJ1GQiCqzJ7eikEu6vwU2zMr4nsFUwImdkhB8_qPnXwMaTjKczrh29tpQeSQkCyz1STKTCYpKJhDy4eZwC4yKXxnL3AXhuxAyD4",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/7.png?alt=media&token=15215f5e-b744-443a-ac6c-f1818860f68c",
                  tags: ["xx3", "xxx2"]),
         ScentDto(id: 3,
                  title: "Wanderer above the Sea of Fog",
-                 imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwXK3KFxlLMWgUcvYS-g5TkRGTkP2ZxPdI3g&s",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/3.png?alt=media&token=83d649fe-a93e-440f-821a-6c4555587a18",
                  tags: ["xx", "xxx2"]),
         ScentDto(id: 4,
                  title: "The Sense of Smell",
-                 imageUrl: "https://lh3.googleusercontent.com/proxy/UB1i16eRiUX4rJ1GQiCqzJ7eikEu6vwU2zMr4nsFUwImdkhB8_qPnXwMaTjKczrh29tpQeSQkCyz1STKTCYpKJhDy4eZwC4yKXxnL3AXhuxAyD4",
+                 imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/4.png?alt=media&token=2d04c67a-9c10-4dda-9b4d-cacda8f49079",
                  tags: ["xx3", "xxx2"]),
     ]
     
@@ -74,15 +74,11 @@ struct HomeView: View {
                     MainContentContainer(intro: intro)
                 })
                 ScentList("이미지 기반 향 추천",
-                          scents: artBasedScents) {
-                    print("artBasedScents")
-                } scentItemCompletion: { scentId in
+                          scents: artBasedScents) { scentId in
                     router.push(.artDetail(artId: scentId))
                 }
                 ScentList("음악 기반 향 추천",
-                          scents: musicBasedScents) {
-                    print("musicBasedScents")
-                } scentItemCompletion: { scentId in
+                          scents: musicBasedScents) { scentId in
                     router.push(.musicDetail(musicId: scentId))
                 }
             }
