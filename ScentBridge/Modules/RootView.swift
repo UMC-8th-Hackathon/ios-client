@@ -12,6 +12,7 @@ struct RootView: View {
     
     var body: some View {
         NavigationStack(path: $router.path) {
+            
             LoginView()
                 .environment(router)
                 .navigationDestination(for: Route.self) { route in
@@ -23,10 +24,8 @@ struct RootView: View {
                             BaseTabView()
                         case let .artDetail(artId):
                             ArtDetailView(artId)
-                                .environment(router)
                         case let .musicDetail(musicId):
                             MusicDetailView(musicId)
-                                .environment(router)
                         }
                     }
                     .environment(router)

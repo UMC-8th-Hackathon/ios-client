@@ -34,10 +34,10 @@ struct LoginView: View {
                 loginView
                 
                 Spacer()
-                
                 if (!isKeyboardVisible) {
                     nextBtn
                 }
+               
             }
         }
         .alert("로그인 오류", isPresented: $showLoginError) {

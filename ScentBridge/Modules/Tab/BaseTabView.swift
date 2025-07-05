@@ -41,7 +41,6 @@ struct BaseTabView: View {
                     }
                 }
             }
-            .padding(.horizontal, 45.5)
             
             RoundedRectangle(cornerRadius: 24)
                 .stroke(Color.Base.gray.color, lineWidth: 0.5)
