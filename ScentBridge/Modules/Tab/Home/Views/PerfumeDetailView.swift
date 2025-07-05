@@ -9,11 +9,11 @@ import SwiftUI
 
 struct PerfumeDetailView: View {
     @State private var viewModel: PerfumeDetailViewModel = PerfumeDetailViewModel()
-    
     let perfumeId: Int
     
     init(_ perfumeId: Int) {
         self.perfumeId = perfumeId
+        self.viewModel.fetchPerfume(perfumeId: perfumeId)
     }
     
     var body: some View {
