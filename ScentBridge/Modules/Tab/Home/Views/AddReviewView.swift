@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct AddReviewView: View {
-    @State var description: String = ""
+    @Environment(NavigationRouter.self) private var router
+    @State private var viewModel: AddReviewViewModel = AddReviewViewModel()
+    
+    init(_ perfumeId: Int) {
+        viewModel.perfumeId = perfumeId
+    }
     
     var body: some View {
         VStack(spacing: 24) {
             topView
             
-            TextEditor(text: $description)
+            TextEditor(text: $viewModel.description)
                 .font(.pretendard(14, weight: .regular))
                 .foregroundStyle(Color.Base.textOnWhite.color)
                 .padding(.horizontal, 24)
@@ -28,12 +33,21 @@ struct AddReviewView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 15)
+        .alert("리뷰 작성 성공", isPresented: $viewModel.isSuccess) {
+            Button("확인", role: .cancel) { }
+        } message: {
+            Text("리뷰가 성공적으로 등록되었습니다.")
+        }
     }
     
     private var topView: some View {
         HStack {
-            Image("x")
-                .frame(width: 20, height: 20)
+            Button(action: {
+                router.pop()
+            }) {
+                Image("x")
+                    .frame(width: 20, height: 20)
+            }
             
             Spacer()
             
@@ -43,13 +57,19 @@ struct AddReviewView: View {
             
             Spacer()
             
-            Text("완료")
-                .font(.pretendard(16, weight: .semibold))
-                .foregroundStyle(Color.Base.textOnWhite.color)
+            Button(action: {
+                viewModel.postReview()
+                router.pop()
+            }) {
+                Text("완료")
+                    .font(.pretendard(16, weight: .semibold))
+                    .foregroundStyle(Color.Base.textOnWhite.color)
+            }
         }
     }
 }
 
 #Preview {
-    AddReviewView()
+    AddReviewView(1)
+        .environment(NavigationRouter())
 }

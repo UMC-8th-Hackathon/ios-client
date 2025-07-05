@@ -10,6 +10,9 @@ import Foundation
 public class LoginService: SBNetworkService {
     @SecItemWrapper(key: .token, defaultValue: nil)
     var token: String?
+    
+    @SecItemWrapper(key: .userId, defaultValue: nil)
+    var userId: Int?
 
     let baseUrlRequest: URLRequest = URLManager.urlRequest(key: .base)
     let encoder = JSONEncoder()
@@ -27,6 +30,7 @@ public class LoginService: SBNetworkService {
             self.response(sbUrlRequest,
                           type: LoginResponse.self) { value, error in
                 self.token = value?.accessToken
+                self.userId = value?.id
                 completion(value, error)
             }
         } catch {
