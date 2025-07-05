@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ReviewListItem: View {
-    let model: RecordResponse
+    let model: Record
     
-    init(model: RecordResponse) {
+    init(model: Record) {
         self.model = model
     }
     
@@ -46,5 +46,5 @@ struct ReviewListItem: View {
 }
 
 #Preview {
-    ReviewListItem(model: RecordResponse(id: 0, description: "그림에 너무 잘 어울리는 향이예요", user: UserResponse(id: 3, nickname: "패딩"), createdAt: "1232424", updatedAt: "12424"))
+    ReviewListItem(model: Record(id: 0, description: "그림에 너무 잘 어울리는 향이예요", user: User(id: 3, nickname: "패딩"), createdAt: "1232424", updatedAt: "12424"))
 }

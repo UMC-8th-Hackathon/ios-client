@@ -71,25 +71,15 @@ struct PerfumeDetailView: View {
                             
                             VStack {
                                 titleBar(title: "공방에 요청하기")
-                                Map() {
-                                    Annotation("lotteTower",
-                                               coordinate:  $locationManager.region.center.wrappedValue) {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 5)
-                                                .fill(.background)
-                                            Image(systemName: "house.circle.fill")
-                                                .padding(5)
-                                        }
-                                    }
-                                    .annotationTitles(.hidden) 
+                                PointContainer {
+                                    mapView
                                 }
-                                .frame(height: 148)
                             }
                             
                             VStack {
                                 titleBar(title: "리뷰") {
                                     Button {
-                                        
+                                        router.push(.addReview(perfumeId: perfumeId))
                                     } label: {
                                         Text("작성하기")
                                             .font(.pretendard(14, weight: .medium))
@@ -102,6 +92,13 @@ struct PerfumeDetailView: View {
                                             )
                                     }
                                 }
+                                VStack {
+                                    if let records = viewModel.records {
+                                        ForEach(records, id: \.self) { record in
+                                            ReviewListItem(model: record)
+                                        }
+                                    }
+                                }
                             }
                         }
                         .padding(.horizontal, 20)
@@ -112,6 +109,7 @@ struct PerfumeDetailView: View {
             }
         }.onAppear {
             viewModel.fetchShops(locationManager.region.center)
+            viewModel.fetchReviews(perfumeId)
         }
         .navigationBarHidden(true)
     }
@@ -132,6 +130,83 @@ struct PerfumeDetailView: View {
                 .foregroundStyle(Color.Base.textOnWhite.color)
             Spacer()
             rightItem()
+        }
+    }
+    
+    @ViewBuilder
+    var mapView: some View {
+        VStack(spacing: 10) {
+            ZStack {
+                if let shops = viewModel.shops {
+                    Map() {
+                        if let coord = shops.first?.coordinate {
+                            Annotation("shop",
+                                       coordinate:  coord) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.background)
+                                    Image(systemName: "house.circle.fill")
+                                        .padding(5)
+                                }
+                            }
+                                       .annotationTitles(.hidden)
+                        }
+                    }
+                    
+                } else {
+                    ProgressView()
+                }
+            }
+            .frame(height: 148)
+            .cornerRadius(12)
+            
+            HStack { Spacer() }
+            VStack(alignment: .leading, spacing: 8) {
+                if let shop = viewModel.shops?.first {
+                    Text("\(shop.title)")
+                        .font(.pretendard(16,weight: .semibold))
+                        .foregroundColor(.sbTextOnWhite)
+                    HStack { Spacer() }
+                        .frame(height: 0)
+                    Text("\(shop.address)")
+                        .font(.pretendard(8, weight: .medium))
+                    HStack {
+                        Button {
+                            if let url = NSURL(string: "tel://\(shop.contact)"),
+                                 UIApplication.shared.canOpenURL(url as URL) {
+                                  UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                              }
+                        } label: {
+                            Text("제작 의뢰하기")
+                                .font(.pretendard(14, weight: .medium))
+                                .foregroundStyle(Color.Base.primary.color)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.Base.primary.color, lineWidth: 0.5)
+                                )
+                        }
+                        
+                        HStack(spacing: 8) {
+                            Image.Icon.call.image
+                                .resizable()
+                                .frame(width: 16, height: 16)
+                            Text("\(shop.contact)")
+                                .font(.pretendard(8, weight: .medium))
+                                .foregroundColor(.sbTextOnWhite)
+                        }
+                    }
+                }
+            }
+         
+            .padding(.horizontal, 10)
+            .padding(.vertical, 10)
+            .frame(height: 96)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.Base.primary.color, lineWidth: 0.5)
+            )
         }
     }
     

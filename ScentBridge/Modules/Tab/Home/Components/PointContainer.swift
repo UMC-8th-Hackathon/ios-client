@@ -29,10 +29,13 @@ struct PointContainer<Content: View>: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 16)
+        .background(Color.Base.white.color)
         .cornerRadius(12)
+        .shadow(color: Color.black.opacity(0.12), radius: 8, x: 0, y: 4)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray, lineWidth: 0.5)
         )
+
     }
 }

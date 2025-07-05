@@ -42,6 +42,19 @@ public class PerfumeDetailService: SBNetworkService {
         }
     }
     
+    func fetchRecords(perfumeId: Int, completion: @escaping (_ value: [Record]?, _ error: Error?) -> Void) {
+        let urlRequest = baseUrlRequest
+        let sbUrlRequest = ScentBridgeNetworkURLRequest(
+            accessToken: token,
+            urlRequest: urlRequest,
+            method: .get,
+            path: "reviews/\(perfumeId)")
+        self.response(sbUrlRequest,
+                      type: [RecordResponse].self) { value, error in
+            completion(value?.map{ $0.toDomain() }, error)
+        }
+    }
+    
     func postReview(perfumeId: Int, description: String, completion: @escaping (_ value: RecordResponse?, _ error: Error?) -> Void) {
         let request = RecordRequest(description: description)
         let urlRequest = baseUrlRequest

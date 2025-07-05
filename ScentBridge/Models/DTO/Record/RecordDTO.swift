@@ -29,6 +29,10 @@ struct RecordResponse: Codable {
         case createdAt
         case updatedAt
     }
+    
+    func toDomain() -> Record {
+        Record(id: id, description: description, user: user.toDomain(), createdAt: createdAt, updatedAt: updatedAt)
+    }
 }
 
 /// 내가 작성한 리뷰 응답받을 시 사용되는 구조체
