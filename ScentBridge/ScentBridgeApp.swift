@@ -11,7 +11,7 @@ import SwiftUI
 struct ScentBridgeApp: App {
     var body: some Scene {
         WindowGroup {
-            BaseTabView()
+            RootView()
         }
     }
 }

@@ -36,7 +36,7 @@ struct CustomToolBarModifier: ViewModifier {
                 if let title = title {
                     ToolbarItem(placement: .principal) {
                         Text(title)
-                            .font(.pretendardMedium(16))
+                            .font(.pretendard(16, weight: .medium))
                             .foregroundStyle(Color.black)
                             .padding(.bottom, bottomPadding)
                             .padding(.top, topPadding)
