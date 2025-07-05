@@ -8,15 +8,15 @@
 import Foundation
 
 public class PerfumeDetailService: SBNetworkService {
-    let baseUrl: URL = URLManager.url(key: .base)
+    let baseUrlRequest: URLRequest = URLManager.urlRequest(key: .base)
     
     func fetchPerfume(perfumeId: Int, completion: @escaping (_ value: PerfumeResponse?, _ error: Error?) -> Void) {
-        let url = baseUrl
-        let urlRequest = ScentBridgeNetworkURLRequest(
-            url: url,
+        let urlRequest = baseUrlRequest
+        let sbUrlRequest = ScentBridgeNetworkURLRequest(
+            urlRequest: urlRequest,
             method: .get,
             path: "perfumes/\(perfumeId)")
-        self.response(urlRequest,
+        self.response(sbUrlRequest,
                       type: PerfumeResponse.self) { value, error in
             completion(value, error)
         }

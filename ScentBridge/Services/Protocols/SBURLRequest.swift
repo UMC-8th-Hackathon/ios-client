@@ -35,27 +35,6 @@ protocol SBURLRequest: URLRequestConvertible {
 }
 
 extension SBURLRequest {
-    init(_ accessToken: String? = nil,
-         url: URL,
-         method: SBHTTPMethod = .get,
-         path: String,
-         httpBodyDict: [String: Any]? = nil,
-         query: [String : String]? = nil,
-         timeoutInterval: TimeInterval = 10) {
-        var httpBodyData: Data? = nil
-        if let httpBodyDict = httpBodyDict {
-            httpBodyData = try? JSONSerialization.data(withJSONObject: httpBodyDict,
-                                                       options: .prettyPrinted)
-        }
-        self.init(accessToken: accessToken,
-                  urlRequest: URLRequest(url: url),
-                  method: method,
-                  path: path,
-                  httpBody: httpBodyData,
-                  query: query,
-                  timeoutInterval: timeoutInterval)
-    }
-    
     var queryItem: [URLQueryItem]? {
         return query?.compactMap({ (key: String, value: String) in
             URLQueryItem(name: key, value: value)

@@ -16,7 +16,7 @@ public struct ScentBridgeNetworkURLRequest: SBURLRequest {
     var query: [String: String]?
     var timeoutInterval: TimeInterval
     
-    init(accessToken: String?,
+    init(accessToken: String? = nil,
          urlRequest: URLRequest,
          method: SBHTTPMethod,
          path: String,

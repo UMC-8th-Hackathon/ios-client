@@ -22,8 +22,6 @@ struct LoginView: View {
     
     /// password 본문 보이게/안보이게
     @State private var isSecured: Bool = true
-    /// 로그인 에러 시 Alert 등장하게
-    @State private var showLoginError = false
     
     var body: some View {
         ZStack {
@@ -40,7 +38,7 @@ struct LoginView: View {
                
             }
         }
-        .alert("로그인 오류", isPresented: $showLoginError) {
+        .alert("로그인 오류", isPresented: $viewModel.showLoginError) {
             Button("확인", role: .cancel) { }
         } message: {
             Text("이미 등록된 닉네임입니다. \n 비밀번호를 확인해주세요.")
@@ -60,12 +58,7 @@ struct LoginView: View {
     private var nextBtn: some View {
         Button(action: {
             print("다음")
-            /// 로그인 성공 시
-            router.pop()
-            router.push(.baseTab)
-            
-            /// 로그인 실패 시
-//            showLoginError = true
+            viewModel.login(router: router)
         }) {
             Text("다음")
                 .font(.pretendard(20, weight: .medium))
@@ -88,7 +81,7 @@ struct LoginView: View {
         .background(
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.Base.realWhite.color)
-                .shadow01()
+                .loginShadow()
         )
         .padding(.horizontal, 20)
         .padding(.vertical, 160)
