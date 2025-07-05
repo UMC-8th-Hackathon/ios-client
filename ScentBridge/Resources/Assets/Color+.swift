@@ -18,6 +18,7 @@ public extension Color {
         case sub3 = "sb_sub3"
         case alert = "sb_alert"
         case ratingActive = "sb_rating_active"
+        case primary = "sb_primary"
         
         var color: Color { Color(self.rawValue) }
     }
