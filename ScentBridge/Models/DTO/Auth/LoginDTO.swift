@@ -13,7 +13,7 @@ protocol LoginDTO {
 }
 
 /// 로그인 요청 시 사용되는 구조체
-struct LoginRequest: LoginDTO {
+struct LoginRequest: LoginDTO, Codable {
     var nickname: String
     var password: String
 }

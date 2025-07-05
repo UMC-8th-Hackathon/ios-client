@@ -7,26 +7,24 @@
 
 import SwiftUI
 
-struct Shadow01: ViewModifier {
+struct LoginShadow: ViewModifier {
     func body(content: Content) -> some View {
         content
             .shadow(color: .black.opacity(0.25), radius: 3.0, x: 2, y: 2)
     }
 }
 
-struct BtnShadow: ViewModifier {
+struct RecordShadow: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .shadow(color: .black.opacity(0.04), radius: 3.5, x: 0, y: -3)
+            .shadow(color: .black.opacity(0.12), radius: 8, x: 0, y: 4)
     }
 }
 
-struct StickyShadow: ViewModifier {
-    let isActive: Bool
-    
+struct RecordBtnShadow: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .shadow(color: .black.opacity(isActive ? 0.1 : 0), radius: 2, x: 0, y: 0)
+            .shadow(color: .black.opacity(0.15), radius: 1, x: 0, y: 1)
     }
 }
 
@@ -73,16 +71,16 @@ struct AlertShadow: ViewModifier {
 }
 
 extension View {
-    func shadow01() -> some View {
-        self.modifier(Shadow01())
+    func loginShadow() -> some View {
+        self.modifier(LoginShadow())
     }
     
-    func btnShadow() -> some View {
-        self.modifier(BtnShadow())
+    func recordShadow() -> some View {
+        self.modifier(RecordShadow())
     }
     
-    func stickyShadow(isActive: Bool = true) -> some View {
-        self.modifier(StickyShadow(isActive: isActive))
+    func recordBtnShadow() -> some View {
+        self.modifier(RecordBtnShadow())
     }
     
     func otherShadow() -> some View {
