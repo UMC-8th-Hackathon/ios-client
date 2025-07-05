@@ -10,6 +10,5 @@ import SwiftUI
 enum Route: Hashable {
     case login
     case baseTab
-    case artDetail(perfumeId: Int)
-    case musicDetail(perfumeId: Int)
+    case perfumeDetail(perfumeId: Int)
 }

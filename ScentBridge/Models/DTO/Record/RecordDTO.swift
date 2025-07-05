@@ -19,7 +19,7 @@ struct RecordRequest: RecordDTO {
 struct RecordResponse: Codable {
     let id: Int
     let description: String
-    let user: User
+    let user: UserResponse
     let createdAt: String
     let updatedAt: String
 
@@ -35,37 +35,16 @@ struct RecordResponse: Codable {
 /// 내가 작성한 리뷰 응답받을 시 사용되는 구조체
 struct MyRecordResponse: Codable {
     let id: Int
-    let perfume: Perfume
+    let perfumeId: Int
     let description: String
     let createdAt: String
     let updatedAt: String
 
     enum CodingKeys: String, CodingKey {
         case id
-        case perfume
+        case perfumeId
         case description
         case createdAt
         case updatedAt
-    }
-}
-
-
-struct User: Codable {
-    let id: Int
-    let nickname: String
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case nickname
-    }
-}
-
-struct Perfume: Codable {
-    let id: Int
-    let name: String
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
     }
 }
