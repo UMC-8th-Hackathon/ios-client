@@ -12,7 +12,6 @@ struct RootView: View {
     
     var body: some View {
         NavigationStack(path: $router.path) {
-            
             LoginView()
                 .environment(router)
                 .navigationDestination(for: Route.self) { route in

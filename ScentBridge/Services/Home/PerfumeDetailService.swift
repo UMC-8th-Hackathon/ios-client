@@ -14,7 +14,7 @@ public class PerfumeDetailService: SBNetworkService {
     let baseUrlRequest: URLRequest = URLManager.urlRequest(key: .base)
     let encoder = JSONEncoder()
     
-    func fetchPerfume(perfumeId: Int, completion: @escaping (_ value: PerfumeResponse?, _ error: Error?) -> Void) {
+    func fetchPerfume(perfumeId: Int, completion: @escaping (_ value: Perfume?, _ error: Error?) -> Void) {
         let urlRequest = baseUrlRequest
         let sbUrlRequest = ScentBridgeNetworkURLRequest(
             accessToken: token,
@@ -23,7 +23,22 @@ public class PerfumeDetailService: SBNetworkService {
             path: "perfumes/\(perfumeId)")
         self.response(sbUrlRequest,
                       type: PerfumeResponse.self) { value, error in
-            completion(value, error)
+            completion(value?.toDomain(), error)
+        }
+    }
+    
+    func fetchShops(latitude: Double, longitude: Double, completion: @escaping (_ value: [Shop]?, _ error: Error?) -> Void) {
+        let urlRequest = baseUrlRequest
+        let sbUrlRequest = ScentBridgeNetworkURLRequest(
+            accessToken: token,
+            urlRequest: urlRequest,
+            method: .get,
+            path: "shops/nearby",
+            query: ["lat": "\(latitude)",
+                    "lng": "\(longitude)"])
+        self.response(sbUrlRequest,
+                      type: [ShopResponse].self) { value, error in
+            completion(value?.map{ $0.toDomain() }, error)
         }
     }
     

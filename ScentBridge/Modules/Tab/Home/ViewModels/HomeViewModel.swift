@@ -183,6 +183,4 @@ class HomeViewModel {
         createdAt: "2025-07-01T14:00:00",
         updatedAt: "2025-07-01T14:00:00"
     )]
-    
-    
 }

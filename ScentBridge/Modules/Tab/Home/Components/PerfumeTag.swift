@@ -9,19 +9,29 @@ import SwiftUI
 
 struct PerfumeTag: View {
     private let tag: String
+    private let font: Font
+    private let height: CGFloat
+    private let horizontalPadding: CGFloat
     
-    init(_ tag: String) {
+    
+    init(_ tag: String,
+         font: Font = .pretendard(8, weight: .regular),
+         height: CGFloat = 14,
+         horizontalPadding: CGFloat = 10) {
         self.tag = tag
+        self.font = font
+        self.height = height
+        self.horizontalPadding = horizontalPadding
     }
     
     var body: some View {
         VStack {
             Text("# \(tag)")
-                .font(.pretendard(8, weight: .regular))
+                .font(font)
                 .foregroundStyle(Color.Base.gray.color)
         }
-        .padding(.horizontal, 10)
-        .frame(height: 14)
+        .padding(.horizontal, horizontalPadding)
+        .frame(height: height)
         .cornerRadius(50)
         .overlay(
             RoundedRectangle(cornerRadius: 50)
