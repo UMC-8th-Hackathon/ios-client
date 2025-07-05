@@ -30,10 +30,9 @@ extension SBNetworkService {
     func response<D: Codable>(_ sbURLRequest: any SBURLRequest,
                               type: D.Type,
                               completion: @escaping (_ value: D?, _ error: Error?) -> Void) {
-            AF.request(sbURLRequest)
+        AF.request(sbURLRequest)
             .responseDecodable(of: SBNetworkResponse<D>.self) { response in
                 do {
-                    print(response)
                     if let statusCode =  response.response?.statusCode {
                         switch statusCode {
                         case (200..<400): break

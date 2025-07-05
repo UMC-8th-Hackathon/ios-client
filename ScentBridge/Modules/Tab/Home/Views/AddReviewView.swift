@@ -18,7 +18,6 @@ struct AddReviewView: View {
     var body: some View {
         VStack(spacing: 24) {
             topView
-            
             TextEditor(text: $viewModel.description)
                 .font(.pretendard(14, weight: .regular))
                 .foregroundStyle(Color.Base.textOnWhite.color)
@@ -38,6 +37,7 @@ struct AddReviewView: View {
         } message: {
             Text("리뷰가 성공적으로 등록되었습니다.")
         }
+        .navigationBarBackButtonHidden()
     }
     
     private var topView: some View {

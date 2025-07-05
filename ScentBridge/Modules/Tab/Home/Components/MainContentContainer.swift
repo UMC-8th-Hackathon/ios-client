@@ -10,9 +10,9 @@ import Kingfisher
 
 struct MainContentContainer: MainCarouselItemView {
     let id: UUID = UUID()
-    let intro: IntroDto
+    let intro: Intro
     
-    init(intro: IntroDto) {
+    init(intro: Intro) {
         self.intro = intro
     }
     

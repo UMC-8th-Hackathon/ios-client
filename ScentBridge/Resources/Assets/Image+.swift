@@ -26,7 +26,7 @@ public extension Image {
         case neverendingstory = "neverendingstory"
         case dotheDance = "dotheDance"
         
-        
+        case call
         
         var image: Image { Image(self.rawValue) }
     }
