@@ -8,11 +8,11 @@
 import SwiftUI
 import Kingfisher
 
-struct MainContentContainer: CarouselItemView {
+struct MainContentContainer: MainCarouselItemView {
     let id: UUID = UUID()
-    let intro: IntroResponse
+    let intro: IntroDto
     
-    init(intro: IntroResponse) {
+    init(intro: IntroDto) {
         self.intro = intro
     }
     

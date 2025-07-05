@@ -5,7 +5,8 @@
 //  Created by 이전희 on 7/5/25.
 //
 
-struct ScentResponse: Codable {
+struct ScentDto: Hashable {
+    let id: Int
     let title: String
     let imageUrl: String
     let tags: [String]

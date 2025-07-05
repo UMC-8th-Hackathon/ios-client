@@ -1,5 +1,5 @@
 //
-//  Carousel.swift
+//  MainCarouselView.swift
 //  ScentBridge
 //
 //  Created by 이전희 on 7/5/25.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-protocol CarouselItemView: Identifiable, View {
+protocol MainCarouselItemView: Identifiable, View {
     var id: UUID { get }
 }
 
-private struct CarouselItemOffsetKey: PreferenceKey {
+private struct MainCarouselItemOffsetKey: PreferenceKey {
     static var defaultValue: [UUID: CGFloat] = [:]
     
     static func reduce(value: inout [UUID: CGFloat], nextValue: () -> [UUID: CGFloat]) {
@@ -19,7 +19,7 @@ private struct CarouselItemOffsetKey: PreferenceKey {
     }
 }
 
-struct CarouselView<Content: CarouselItemView>: View {
+struct CarouselView<Content: MainCarouselItemView>: View {
     private let contents: [Content]
     private let spacing: CGFloat
     private let height: CGFloat
@@ -52,7 +52,7 @@ struct CarouselView<Content: CarouselItemView>: View {
                                     GeometryReader { geo in
                                         Color.clear
                                             .preference(
-                                                key: CarouselItemOffsetKey.self,
+                                                key: MainCarouselItemOffsetKey.self,
                                                 value: [content.id: geo.frame(in: .global).midX]
                                             )
                                     }
@@ -68,7 +68,7 @@ struct CarouselView<Content: CarouselItemView>: View {
                     .scrollTargetLayout()
                 }
                 .scrollTargetBehavior(.viewAligned)
-                .onPreferenceChange(CarouselItemOffsetKey.self) { offsets in
+                .onPreferenceChange(MainCarouselItemOffsetKey.self) { offsets in
                     let centerX = geometry.frame(in: .global).midX
                     
                     if let nearest = offsets.min(by: { abs($0.value - centerX) < abs($1.value - centerX) }) {
