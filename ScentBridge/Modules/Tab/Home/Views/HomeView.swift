@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var viewModel: HomeViewModel = HomeViewModel()
     @Environment(NavigationRouter.self) private var router
     
     let introduces: [IntroDto] = [
@@ -28,7 +29,7 @@ struct HomeView: View {
                  scentAuthor: "Jan Brueghel the Elder")
     ]
     
-    let artBasedScents: [ScentDto] = [
+    let artBasedPerfumes: [ScentDto] = [
         ScentDto(id: 1,
                  title: "The Sense of Smell",
                  imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/2.png?alt=media&token=b9a9e770-8022-439c-8aea-a1a30d095435",
@@ -47,7 +48,7 @@ struct HomeView: View {
                  tags: ["xx3", "xxx2"]),
     ]
     
-    let musicBasedScents: [ScentDto] = [
+    let musicBasedPerfumes: [ScentDto] = [
         ScentDto(id: 1,
                  title: "The Sense of Smell",
                  imageUrl: "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/6.png?alt=media&token=63f9356b-3514-4bbe-9a26-20cd40a13151",
@@ -74,23 +75,24 @@ struct HomeView: View {
                     MainContentContainer(intro: intro)
                 })
                 ScentList("이미지 기반 향 추천",
-                          scents: artBasedScents) { scentId in
-                    router.push(.artDetail(artId: scentId))
+                          scents: artBasedPerfumes) { perfumeId in
+                    moveToArtBasedPerfume(perfumeId)
                 }
                 ScentList("음악 기반 향 추천",
-                          scents: musicBasedScents) { scentId in
-                    router.push(.musicDetail(musicId: scentId))
+                          scents: musicBasedPerfumes) { scentId in
+                    router.push(.musicDetail(perfumeId: scentId))
                 }
             }
         }
     }
     
-    private func moveToArtBasedScent(_ scent: ScentDto) {
-        router.push(.artDetail(artId: scent.id))
+    private func moveToArtBasedPerfume(_ perfumeId: Int) {
+        viewModel.fetchPerfume(perfumeId: 1)
+//        router.push(.artDetail(artId: scent.id))
     }
     
-    private func moveToMusicBasedScent(_ scent: ScentDto) {
-        router.push(.musicDetail(musicId: scent.id))
+    private func moveToMusicBasedPerfume(_ perfumeId: Int) {
+        router.push(.musicDetail(perfumeId: perfumeId))
     }
 }
 

@@ -10,6 +10,6 @@ import SwiftUI
 enum Route: Hashable {
     case login
     case baseTab
-    case artDetail(artId: Int)
-    case musicDetail(musicId: Int)
+    case artDetail(perfumeId: Int)
+    case musicDetail(perfumeId: Int)
 }

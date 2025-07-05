@@ -25,13 +25,13 @@ protocol SBURLRequest: URLRequestConvertible {
     var query: [String: String]?  { get set }
     var timeoutInterval: TimeInterval  { get set }
     
-    init(_accessToken: String?,
-         _urlRequest: URLRequest,
-         _method: SBHTTPMethod,
-         _path: String,
-         _httpBody: Data?,
-         _query: [String : String]?,
-         _timeoutInterval: TimeInterval)
+    init(accessToken: String?,
+         urlRequest: URLRequest,
+         method: SBHTTPMethod,
+         path: String,
+         httpBody: Data?,
+         query: [String : String]?,
+         timeoutInterval: TimeInterval)
 }
 
 extension SBURLRequest {
@@ -39,18 +39,21 @@ extension SBURLRequest {
          url: URL,
          method: SBHTTPMethod = .get,
          path: String,
-         httpBodyDict: [String: Any],
+         httpBodyDict: [String: Any]? = nil,
          query: [String : String]? = nil,
          timeoutInterval: TimeInterval = 10) {
-        let httpBodyData = try? JSONSerialization.data(withJSONObject: httpBodyDict,
+        var httpBodyData: Data? = nil
+        if let httpBodyDict = httpBodyDict {
+            httpBodyData = try? JSONSerialization.data(withJSONObject: httpBodyDict,
                                                        options: .prettyPrinted)
-        self.init(_accessToken: accessToken,
-                  _urlRequest: URLRequest(url: url),
-                  _method: method,
-                  _path: path,
-                  _httpBody: httpBodyData,
-                  _query: query,
-                  _timeoutInterval: timeoutInterval)
+        }
+        self.init(accessToken: accessToken,
+                  urlRequest: URLRequest(url: url),
+                  method: method,
+                  path: path,
+                  httpBody: httpBodyData,
+                  query: query,
+                  timeoutInterval: timeoutInterval)
     }
     
     var queryItem: [URLQueryItem]? {
