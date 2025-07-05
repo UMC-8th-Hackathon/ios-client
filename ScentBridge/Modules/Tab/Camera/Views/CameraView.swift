@@ -18,20 +18,24 @@ struct CameraView: View {
     @State private var showPhotosPicker = false
 
     var body: some View {
-        VStack {
-            captionBoard
-            Spacer()
-            bottomBoard
-        }
-        .sheet(isPresented: $showCamera) {
-            CameraPicker { image in
-                self.capturedImage = image
+        ZStack {
+            Color.sbWhite
+                .ignoresSafeArea()
+            VStack {
+                captionBoard
+                Spacer()
+                bottomBoard
             }
+            .sheet(isPresented: $showCamera) {
+                CameraPicker { image in
+                    self.capturedImage = image
+                }
+            }
+            .photosPicker(isPresented: $showGallery,
+                          selection: $selectedItems,
+                          maxSelectionCount: 1,
+                          matching: .images)
         }
-        .photosPicker(isPresented: $showGallery,
-                      selection: $selectedItems,
-                      maxSelectionCount: 1,
-                      matching: .images)
     }
     
     private var captionBoard: some View {

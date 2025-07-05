@@ -15,18 +15,22 @@ struct MusicView: View {
     }
     
     private var topSection: some View {
-        VStack(spacing: 30) {
-            HStack {
-                Text("음악")
-                    .padding(.leading, 25)
-                    .padding(.top, 15)
-                    .font(.pretendard(28, weight: .semibold))
-                    .foregroundStyle(.black)
-                Spacer()
+        ZStack {
+            Color.sbWhite
+                .ignoresSafeArea()
+            VStack(spacing: 30) {
+                HStack {
+                    Text("음악")
+                        .padding(.leading, 25)
+                        .padding(.top, 15)
+                        .font(.pretendard(28, weight: .semibold))
+                        .foregroundStyle(.black)
+                    Spacer()
+                }
+                Image(.lpimage)
+                    .frame(width: 221, height: 221)
+                    .padding(.bottom, 30)
             }
-            Image(.lpimage)
-                .frame(width: 221, height: 221)
-                .padding(.bottom, 30)
         }
     }
         
@@ -76,7 +80,7 @@ struct MusicView: View {
             .padding(.top, 25)
         }
         .padding(.horizontal, 20)
-        .padding(.bottom, 90)
+        .padding(.bottom, 30)
     }
 }
 
