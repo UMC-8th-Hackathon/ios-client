@@ -12,7 +12,7 @@ struct RootView: View {
     
     var body: some View {
         NavigationStack(path: $router.path) {
-            PerfumeDetailView(3 )
+            LoginView()
                 .environment(router)
                 .navigationDestination(for: Route.self) { route in
                     Group {
