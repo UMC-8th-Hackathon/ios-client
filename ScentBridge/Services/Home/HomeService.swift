@@ -10,5 +10,16 @@ import Foundation
 public class HomeService: SBNetworkService {
     let baseUrl: URL = URLManager.url(key: .base)
     
+    func fetchPerfume(perfumeId: Int) {
+        let url = baseUrl
+        let urlRequest = ScentBridgeNetworkURLRequest(
+            url: url,
+            method: .get,
+            path: "perfumes/\(perfumeId)")
+        self.response(urlRequest,
+                      type: PerfumeResponse.self) { value, error in
+            print(value)
+        }
+    }
     
 }

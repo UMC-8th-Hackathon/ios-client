@@ -30,9 +30,11 @@ extension SBNetworkService {
     func response<D: Codable>(_ sbURLRequest: any SBURLRequest,
                               type: D.Type,
                               completion: @escaping (_ value: D?, _ error: Error?) -> Void) {
+        print(try? sbURLRequest.asURLRequest().url)
         AF.request(sbURLRequest)
-            .responseDecodable(of: SBNetworkResult<D>.self) { response in
+            .responseDecodable(of: SBNetworkResponse<D>.self) { response in
                 do {
+                    print(response)
                     if let statusCode =  response.response?.statusCode {
                         switch statusCode {
                         case (200..<400): break
@@ -48,7 +50,7 @@ extension SBNetworkService {
                         return
                     }
                     
-                    guard networkResult.status.uppercased() == "SUCCESS" else {
+                    guard networkResult.code.uppercased() == "SUCCESS" else {
                         completion(nil, SBNetworkError.requestFail(code: networkResult.code,
                                                                    message: networkResult.message))
                         return
@@ -60,9 +62,9 @@ extension SBNetworkService {
             }
     }
     
-    func response(_ sbNetworkResult: any SBURLRequest,
+    func response(_ sbUrlRequest: any SBURLRequest,
                   completion: @escaping (_ value: Data?, _ error: Error?) -> Void) {
-        AF.request(sbNetworkResult)
+        AF.request(sbUrlRequest)
             .responseData { response in
                 completion(response.value, response.error)
             }

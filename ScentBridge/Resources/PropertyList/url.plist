@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>base</key>
-	<string></string>
+	<string>http://13.124.254.204:8080/api</string>
 </dict>
 </plist>
