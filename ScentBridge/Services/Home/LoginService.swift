@@ -8,6 +8,9 @@
 import Foundation
 
 public class LoginService: SBNetworkService {
+    @SecItemWrapper(key: .token, defaultValue: nil)
+    var token: String?
+
     let baseUrlRequest: URLRequest = URLManager.urlRequest(key: .base)
     let encoder = JSONEncoder()
     
@@ -23,6 +26,7 @@ public class LoginService: SBNetworkService {
                 httpBody: jsonData)
             self.response(sbUrlRequest,
                           type: LoginResponse.self) { value, error in
+                self.token = value?.accessToken
                 completion(value, error)
             }
         } catch {

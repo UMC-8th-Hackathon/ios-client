@@ -1,5 +1,5 @@
 //
-//  ScentList.swift
+//  PerfumeList.swift
 //  ScentBridge
 //
 //  Created by 이전희 on 7/5/25.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct ScentList: View {
+struct PerfumeList: View {
     private let title: String
-    private let scents: [ScentDto]
-    private let scentItemCompletion: (_ scentId: Int) -> Void
+    private let perfumes: [Perfume]
+    private let perfumeItemCompletion: (_ perfumeId: Int) -> Void
     
     init(_ title: String,
-         scents: [ScentDto],
-         scentItemCompletion: @escaping (_ scentId: Int) -> Void) {
+         perfumes: [Perfume],
+         perfumeItemCompletion: @escaping (_ perfumeId: Int) -> Void) {
         self.title = title
-        self.scents = scents
-        self.scentItemCompletion = scentItemCompletion
+        self.perfumes = perfumes
+        self.perfumeItemCompletion = perfumeItemCompletion
         
     }
     
@@ -32,8 +32,8 @@ struct ScentList: View {
             
             ScrollView(.horizontal,showsIndicators: false) {
                 HStack(spacing: 12){
-                    ForEach(scents, id: \.self) { scent in
-                        ScentListItem(scent: scent, completion: scentItemCompletion)
+                    ForEach(perfumes, id: \.self) { perfume in
+                        PerfumeListItem(perfume: perfume, completion: perfumeItemCompletion)
                     }
                 }
                 .padding(.horizontal, 20)

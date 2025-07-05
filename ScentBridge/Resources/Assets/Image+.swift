@@ -13,4 +13,10 @@ public extension Image {
     
         var image: Image { Image(self.rawValue) }
     }
+    
+    enum `Default`: String {
+        case record = "default_record_image"
+        
+        var image: Image { Image(self.rawValue) }
+    }
 }

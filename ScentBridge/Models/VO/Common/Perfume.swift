@@ -5,7 +5,7 @@
 //  Created by 이전희 on 7/6/25.
 //
 
-struct PerfumeDescription {
+struct PerfumeDescription: Hashable {
     let fileDescription: String
     let top: [String]
     let middle: [String]
@@ -15,7 +15,7 @@ struct PerfumeDescription {
     let title: String
 }
 
-struct Perfume {
+struct Perfume: Hashable {
     let id: Int
     let sourceType: PerfumeSourceType
     let description: PerfumeDescription
