@@ -25,14 +25,22 @@ class CameraViewModel {
 
         service.postPerfumes(sourceType: "IMAGE", image: capturedImage) { [weak self] value, error in
             guard let self = self else {
-                completion(nil)
                 print("self 없음")
+                completion(nil)
                 return
             }
 
-            guard let value = value else {
+            guard let error = error else {
+                print("error 없음")
                 completion(nil)
+                return
+            }
+            
+            print(error.localizedDescription)
+
+            guard let value = value else {
                 print("value 없음")
+                completion(nil)
                 return
             }
 
