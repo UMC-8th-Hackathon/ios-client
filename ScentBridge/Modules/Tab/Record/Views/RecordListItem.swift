@@ -8,16 +8,37 @@
 import SwiftUI
 import Kingfisher
 
+struct RecordListModel {
+    let id: Int
+    let imageURL: String
+    let title: String
+    let createdAt: String
+    let type: String
+}
+
 struct RecordListItem: View {
-    let model: MyRecordResponse
+    let imageURL: String
+    let title: String
+    let createdAt: String
+    let type: String
     
-    init(model: MyRecordResponse) {
-        self.model = model
+    init(model: PerfumeResponse) {
+        self.imageURL = model.url
+        self.title = model.description.title
+        self.createdAt = model.createdAt
+        self.type = model.sourceType == .audio ? "오디오" : "이미지"
+    }
+    
+    init(model: RecordListModel) {
+        self.imageURL = model.imageURL
+        self.title = model.title
+        self.createdAt = model.createdAt
+        self.type = model.type == "AUDIO" ? "오디오" : "이미지"
     }
     
     var body: some View {
         HStack(spacing: 16) {
-            KFImage(URL(string:  "https://firebasestorage.googleapis.com/v0/b/umc-hack.firebasestorage.app/o/1.png?alt=media&token=b366bb38-bf36-428e-aee3-ed40c5059425")!)
+            KFImage(URL(string: self.imageURL)!)
                 .placeholder({
                     ProgressView()
                         .controlSize(.mini)
@@ -48,18 +69,18 @@ struct RecordListItem: View {
     private var contentView: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(model.description)
+                Text(self.title)
                     .foregroundStyle(Color.Base.textOnWhite.color)
                     .font(.pretendard(16, weight: .semibold))
                     .lineLimit(1)
                 
-                Text(model.description)
+                Text("분석 일시 : \(formatDate(self.createdAt))")
                     .padding(.vertical, 2)
                     .foregroundStyle(Color.Base.gray.color)
                     .font(.pretendard(14, weight: .medium))
                     .lineLimit(1)
                 
-                Text("이미지 기반")
+                Text("\(self.type) 기반")
                     .foregroundStyle(Color.Base.gray.color)
                     .font(.pretendard(8, weight: .regular))
                     .padding(.horizontal, 10)
@@ -75,8 +96,19 @@ struct RecordListItem: View {
         }
         .frame(maxWidth: .infinity)
     }
-}
+    
+    func formatDate(_ input: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-#Preview {
-    RecordListItem(model: MyRecordResponse(id: 0, perfumeId: 1, description: "Claude Monet - Water LiliesClaude Monet - Water LiliesClaude Monet - Water Lilies", createdAt: "1242", updatedAt: "1242"))
+        let outputFormatter = DateFormatter()
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+        outputFormatter.dateFormat = "yyyy년 M월 d일"
+
+        if let date = inputFormatter.date(from: input) {
+            return outputFormatter.string(from: date)
+        } else {
+            return input
+        }
+    }
 }

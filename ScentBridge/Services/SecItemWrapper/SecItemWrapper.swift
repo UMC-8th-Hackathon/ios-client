@@ -8,6 +8,7 @@
 import Foundation
 
 enum SecItemWrapperKey: String {
+    case userId
     case token
 }
 

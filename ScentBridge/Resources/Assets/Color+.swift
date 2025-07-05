@@ -19,6 +19,8 @@ public extension Color {
         case alert = "sb_alert"
         case ratingActive = "sb_rating_active"
         case primary = "sb_primary"
+        case blurWhite = "sb_blur_white"
+        case whitestroke = "sb_white_stroke"
         
         var color: Color { Color(self.rawValue) }
     }

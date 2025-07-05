@@ -11,4 +11,5 @@ enum Route: Hashable {
     case login
     case baseTab
     case perfumeDetail(perfumeId: Int)
+    case addReview(perfumeId: Int)
 }
