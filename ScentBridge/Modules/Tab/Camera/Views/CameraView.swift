@@ -9,10 +9,12 @@ import SwiftUI
 import PhotosUI
 
 struct CameraView: View {
+    @Environment(NavigationRouter.self) private var router
+    
+    @Bindable var viewModel: CameraViewModel = .init()
 
     @State private var showCamera = false
     @State private var showGallery = false
-    @State private var capturedImage: UIImage?
     @State private var selectedItems: [PhotosPickerItem] = []
     
     @State private var showPhotosPicker = false
@@ -28,13 +30,24 @@ struct CameraView: View {
             }
             .sheet(isPresented: $showCamera) {
                 CameraPicker { image in
-                    self.capturedImage = image
+                    self.viewModel.capturedImage = image
                 }
             }
             .photosPicker(isPresented: $showGallery,
                           selection: $selectedItems,
                           maxSelectionCount: 1,
                           matching: .images)
+            .onChange(of: selectedItems, {
+                print("Change")
+                self.viewModel.capturedImage = selectedItems?.first
+                self.viewModel.postPerfumes { perfumeId in
+                    if let id = perfumeId {
+                        movePerfumeDetail(id)
+                    } else {
+                        print("향수 생성 실패")
+                    }
+                }
+            })
         }
     }
     
@@ -105,8 +118,13 @@ struct CameraView: View {
         }
         .padding(.bottom, 20)
     }
+    
+    private func movePerfumeDetail(_ perfumeId: Int) {
+        router.push(.perfumeDetail(perfumeId: perfumeId))
+    }
 }
 
 #Preview {
     CameraView()
+        .environment(NavigationRouter())
 }

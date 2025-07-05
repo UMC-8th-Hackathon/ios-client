@@ -9,6 +9,7 @@ import Foundation
 
 
 struct PerfumeDescriptionResponse: Codable {
+    let id: Int
     let fileDescription: String
     let top: [String]
     let middle: [String]
