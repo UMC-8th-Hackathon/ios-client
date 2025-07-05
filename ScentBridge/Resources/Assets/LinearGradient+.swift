@@ -13,7 +13,9 @@ public extension LinearGradient {
         
         var colors: [Color] {
             switch self {
-            case .primary: [ Color.realWhite, Color.sub1, Color.sub3]
+            case .primary: [Color.Base.realWhite.color,
+                            Color.Base.sub1.color,
+                            Color.Base.sub3.color]
             }
         }
         
