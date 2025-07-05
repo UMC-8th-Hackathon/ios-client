@@ -22,10 +22,8 @@ struct RootView: View {
                             LoginView()
                         case .baseTab:
                             BaseTabView()
-                        case let .artDetail(artId):
-                            ArtDetailView(artId)
-                        case let .musicDetail(musicId):
-                            MusicDetailView(musicId)
+                        case let .perfumeDetail(perfumeId):
+                            PerfumeDetailView(perfumeId)
                         }
                     }
                     .environment(router)

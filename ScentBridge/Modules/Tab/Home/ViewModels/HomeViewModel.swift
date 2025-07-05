@@ -10,8 +10,4 @@ import SwiftUI
 @Observable
 class HomeViewModel {
     let service: HomeService = HomeService()
-    
-    func fetchPerfume(perfumeId: Int) {
-        service.fetchPerfume(perfumeId: perfumeId)
-    }
 }

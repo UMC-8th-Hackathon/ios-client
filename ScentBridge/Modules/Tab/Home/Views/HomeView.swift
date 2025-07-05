@@ -76,24 +76,20 @@ struct HomeView: View {
                 })
                 ScentList("이미지 기반 향 추천",
                           scents: artBasedPerfumes) { perfumeId in
-                    moveToArtBasedPerfume(perfumeId)
+                    movePerfumeDetail(perfumeId)
                 }
                 ScentList("음악 기반 향 추천",
                           scents: musicBasedPerfumes) { scentId in
-                    router.push(.musicDetail(perfumeId: scentId))
+                    router.push(.perfumeDetail(perfumeId: scentId))
                 }
             }
         }
     }
     
-    private func moveToArtBasedPerfume(_ perfumeId: Int) {
-        viewModel.fetchPerfume(perfumeId: 1)
-//        router.push(.artDetail(artId: scent.id))
+    private func movePerfumeDetail(_ perfumeId: Int) {
+        router.push(.perfumeDetail(perfumeId: perfumeId))
     }
-    
-    private func moveToMusicBasedPerfume(_ perfumeId: Int) {
-        router.push(.musicDetail(perfumeId: perfumeId))
-    }
+
 }
 
 #Preview {
