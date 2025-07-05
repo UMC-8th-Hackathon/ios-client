@@ -9,8 +9,8 @@ import SwiftUI
 
 public extension Image {
     enum Icon: String {
-        case profile = "profile"
-        
+        case rightArrow = "right_arrow"
+    
         var image: Image { Image(self.rawValue) }
     }
 }

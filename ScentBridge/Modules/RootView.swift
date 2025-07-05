@@ -12,20 +12,23 @@ struct RootView: View {
     
     var body: some View {
         NavigationStack(path: $router.path) {
-            BaseTabView()
+            
+            LoginView()
                 .environment(router)
                 .navigationDestination(for: Route.self) { route in
-                    switch route {
-                    case .baseTab:
-                        BaseTabView()
-                            .environment(router)
-                    case .artDetail:
-                        ArtDetailView()
-                            .environment(router)
-                    case .musicDetail:
-                        MusicDetailView()
-                            .environment(router)
+                    Group {
+                        switch route {
+                        case .login:
+                            LoginView()
+                        case .baseTab:
+                            BaseTabView()
+                        case let .artDetail(artId):
+                            ArtDetailView(artId)
+                        case let .musicDetail(musicId):
+                            MusicDetailView(musicId)
+                        }
                     }
+                    .environment(router)
                 }
         }
     }

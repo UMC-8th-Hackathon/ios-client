@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct ArtDetailView: View {
+    let artId: Int
+    
+    init(_ artId: Int) {
+        self.artId = artId
+    }
+    
     var body: some View {
         Text("Art Detail")
     }
 }
 
 #Preview {
-    ArtDetailView()
+    ArtDetailView(1)
 }
