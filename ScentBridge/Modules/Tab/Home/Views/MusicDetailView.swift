@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct MusicDetailView: View {
+    let musicId: Int
+    
+    init(_ musicId: Int) {
+        self.musicId = musicId
+    }
+    
     var body: some View {
         Text("Music Detail")
     }
 }
 
 #Preview {
-    MusicDetailView()
+    MusicDetailView(1)
 }

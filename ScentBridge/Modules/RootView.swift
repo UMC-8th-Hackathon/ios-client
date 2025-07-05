@@ -21,10 +21,12 @@ struct RootView: View {
                             LoginView()
                         case .baseTab:
                             BaseTabView()
-                        case .artDetail:
-                            ArtDetailView()
-                        case .musicDetail:
-                            MusicDetailView()
+                        case let .artDetail(artId):
+                            ArtDetailView(artId)
+                                .environment(router)
+                        case let .musicDetail(musicId):
+                            MusicDetailView(musicId)
+                                .environment(router)
                         }
                     }
                     .environment(router)
