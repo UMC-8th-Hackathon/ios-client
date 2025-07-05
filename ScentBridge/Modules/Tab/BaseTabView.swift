@@ -8,8 +8,34 @@
 import SwiftUI
 
 struct BaseTabView: View {
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            HomeView()
+                .tabItem {
+                    Text("Home")
+                }
+
+            CameraView()
+                .tabItem {
+                    Text("Camera")
+                }
+
+            MusicView()
+                .tabItem {
+                    Text("Music")
+                }
+
+            ReviewView()
+                .tabItem {
+                    Text("Review")
+                }
+        }
+        .onAppear {
+            UITabBar.appearance().backgroundColor = .white
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
     }
 }
 

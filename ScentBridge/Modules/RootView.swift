@@ -19,6 +19,12 @@ struct RootView: View {
                     case .baseTab:
                         BaseTabView()
                             .environment(router)
+                    case .artDetail:
+                        ArtDetailView()
+                            .environment(router)
+                    case .musicDetail:
+                        MusicDetailView()
+                            .environment(router)
                     }
                 }
         }
