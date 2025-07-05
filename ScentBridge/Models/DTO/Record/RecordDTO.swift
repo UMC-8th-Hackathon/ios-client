@@ -14,7 +14,6 @@ struct RecordRequest: RecordDTO {
     var description: String
 }
 
-
 /// 리뷰 응답받을 시 사용되는 구조체
 struct RecordResponse: Codable {
     let id: Int
