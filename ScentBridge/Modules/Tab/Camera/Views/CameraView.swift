@@ -79,12 +79,11 @@ struct CameraView: View {
                     .padding(.trailing, 195)
                     .padding(.top, 10)
                 bottomBtn
-                Spacer()
             }
             .padding(20)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 323)
+        .frame(height: 220)
     }
     
     private var bottomBtn: some View {
@@ -104,6 +103,7 @@ struct CameraView: View {
                 showGallery.toggle()
             }
         }
+        .padding(.bottom, 20)
     }
 }
 

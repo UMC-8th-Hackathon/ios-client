@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 struct MusicView: View {
     var body: some View {
@@ -65,7 +66,7 @@ struct MusicView: View {
                         .foregroundStyle(.black)
                     Spacer()
                 }
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 10) {
                         ForEach(Array(DummyMusicData.topTenMusic.enumerated()), id: \.offset) { index, music in
                                 MusicList(topTenMusicResponse: music)
