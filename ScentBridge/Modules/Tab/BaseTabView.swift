@@ -76,8 +76,8 @@ struct BaseTabView: View {
                 CameraView()
             case .music:
                 MusicView()
-            case .review:
-                ReviewView()
+            case .record:
+                RecordView()
             }
         }
     }

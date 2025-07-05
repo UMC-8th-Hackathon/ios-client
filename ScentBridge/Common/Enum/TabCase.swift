@@ -11,7 +11,7 @@ enum TabCase: String, CaseIterable {
     case home = "Home"
     case camera = "Camera"
     case music = "Music"
-    case review = "Review"
+    case record = "Record"
     
     var displayName: String {
         switch self {
@@ -21,8 +21,8 @@ enum TabCase: String, CaseIterable {
             return "카메라"
         case .music:
             return "음악"
-        case .review:
-            return "리뷰"
+        case .record:
+            return "기록"
         }
     }
 }

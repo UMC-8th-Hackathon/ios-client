@@ -1,22 +1,22 @@
 //
-//  ReviewDTO.swift
+//  RecordDTO.swift
 //  ScentBridge
 //
 //  Created by 주민영 on 7/5/25.
 //
 
-protocol ReviewDTO {
+protocol RecordDTO {
     var description: String { get set }
 }
 
 /// 리뷰 작성 요청 시 사용되는 구조체
-struct ReviewRequest: ReviewDTO {
+struct RecordRequest: RecordDTO {
     var description: String
 }
 
 
 /// 리뷰 응답받을 시 사용되는 구조체
-struct ReviewResponse: Codable {
+struct RecordResponse: Codable {
     let id: Int
     let description: String
     let user: User
@@ -33,7 +33,7 @@ struct ReviewResponse: Codable {
 }
 
 /// 내가 작성한 리뷰 응답받을 시 사용되는 구조체
-struct MyReviewResponse: Codable {
+struct MyRecordResponse: Codable {
     let id: Int
     let perfume: Perfume
     let description: String
