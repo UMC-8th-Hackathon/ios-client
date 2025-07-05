@@ -10,7 +10,7 @@ protocol RecordDTO {
 }
 
 /// 리뷰 작성 요청 시 사용되는 구조체
-struct RecordRequest: RecordDTO {
+struct RecordRequest: RecordDTO, Codable {
     var description: String
 }
 
@@ -37,13 +37,11 @@ struct MyRecordResponse: Codable {
     let perfumeId: Int
     let description: String
     let createdAt: String
-    let updatedAt: String
 
     enum CodingKeys: String, CodingKey {
         case id
         case perfumeId
         case description
         case createdAt
-        case updatedAt
     }
 }

@@ -24,6 +24,8 @@ struct RootView: View {
                             BaseTabView()
                         case let .perfumeDetail(perfumeId):
                             PerfumeDetailView(perfumeId)
+                        case let .addReview(perfumeId):
+                            AddReviewView(perfumeId)
                         }
                     }
                     .environment(router)
