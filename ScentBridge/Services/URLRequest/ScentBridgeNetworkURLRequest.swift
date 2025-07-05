@@ -31,4 +31,58 @@ public struct ScentBridgeNetworkURLRequest: SBURLRequest {
         self.query = query
         self.timeoutInterval = timeoutInterval
     }
+    
+    // 사진 첨부 multipart/form-data 요청용 init
+    init(accessToken: String? = nil,
+         urlRequest: URLRequest,
+         method: SBHTTPMethod,
+         path: String,
+         imageData: Data,
+         imageKey: String = "image",
+         additionalFields: [String: String]? = nil,
+         timeoutInterval: TimeInterval = 30) {
+
+        self.accessToken = accessToken
+        self.urlRequest = urlRequest
+        self.httpMethod = method
+        self.path = path
+        self.query = nil
+        self.timeoutInterval = timeoutInterval
+
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var request = urlRequest
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        var body = Data()
+
+        // 텍스트 필드 추가
+        if let fields = additionalFields {
+            for (key, value) in fields {
+                body.append("--\(boundary)\r\n")
+                body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.append("\(value)\r\n")
+            }
+        }
+
+        // 이미지 추가
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"\(imageKey)\"; filename=\"photo.jpg\"\r\n")
+        body.append("Content-Type: image/jpeg\r\n\r\n")
+        body.append(imageData)
+        body.append("\r\n")
+
+        body.append("--\(boundary)--\r\n")
+
+        self.httpBody = body
+        self.urlRequest = request
+    }
 }
+
+extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
+}
+
