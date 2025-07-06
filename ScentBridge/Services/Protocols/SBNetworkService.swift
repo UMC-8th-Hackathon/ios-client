@@ -48,6 +48,7 @@ extension SBNetworkService {
                         return
                     }
                     
+                    print(response.value)
                     guard networkResult.code.uppercased() == "SUCCESS" else {
                         completion(nil, SBNetworkError.requestFail(code: networkResult.code,
                                                                    message: networkResult.message))

@@ -16,6 +16,7 @@ class HomeViewModel {
     
     func fetchArtBasedPerfumes() {
         service.fetchRecommendPerfumes(sourceType: .image) { value, error in
+            print(value,error)
             self.artBasedPerfumes = value ?? []
         }
     }

@@ -44,8 +44,7 @@ class CameraViewModel {
                 return
             }
 
-            self.perfumeId = value.id
-            completion(value.id)
+            completion(perfumeId)
         }
     }
 }
