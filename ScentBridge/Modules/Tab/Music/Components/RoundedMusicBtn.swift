@@ -40,10 +40,16 @@ struct RoundedMusicBtn: View {
                 .frame(width: 122, height: 40)
                 .background(backgroundColor)
                 .foregroundStyle(foregroundColor)
+                .cornerRadius(cornerRadius)
+                .background(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .fill(backgroundColor)
+                )
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(borderColor, lineWidth: 1)
                 )
+
                 
         }
     }
