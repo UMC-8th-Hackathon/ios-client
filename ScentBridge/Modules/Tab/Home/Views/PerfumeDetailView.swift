@@ -23,6 +23,23 @@ struct PerfumeDetailView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    router.pop()
+                }) {
+                    Image("leftChevron")
+                }
+                
+                Spacer()
+                
+                Text("분석 결과")
+                    .font(.pretendard(24,
+                                      weight: .semibold))
+                
+                Spacer()
+            }
+            .padding(.horizontal, 12)
+            
             if let perfume = viewModel.perfume {
                 ScrollView(showsIndicators: false){
                     VStack(spacing: 20) {
@@ -32,9 +49,11 @@ struct PerfumeDetailView: View {
                                    let imageUrl = URL(string: perfume.url)  {
                                     KFImage(imageUrl)
                                         .resizable()
+                                        .scaledToFit()
                                 } else {
                                     Image.Default.record.image
                                         .resizable()
+                                        .scaledToFit()
                                 }
                             }
                             .frame(width: 248, height: 150)
